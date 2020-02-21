@@ -1,0 +1,118 @@
+<div>
+    <img style="margin-left:15px;margin-top:-5px;cursor: pointer" routerLink="../AddNewSkill"
+        src="../../assets/img/AddNew.png" />
+    <button p-button routerLink="../AddNewSkill" style="margin-top: 30px;margin-left:-8px" type="button"
+        class="btnCSS">Add New Skill</button>
+
+
+    <img style="margin-left:20px;margin-top:-5px;cursor: pointer" routerLink="../CategoryMaster"
+        *ngIf="this.isAdminUser" src="../../assets/img/AddNew.png" />
+    <button p-button routerLink="../CategoryMaster" style="margin-top: 30px;margin-left:-8px" type="button"
+        class="btnCSS" *ngIf="this.isAdminUser">Category Master</button>
+
+
+    <img style="margin-left:20px;margin-top:-5px;cursor: pointer" routerLink="../SkillMaster" *ngIf="this.isAdminUser"
+        src="../../assets/img/AddNew.png" />
+    <button p-button routerLink="../SkillMaster" style="margin-top: 30px;margin-left:-8px" *ngIf="this.isAdminUser"
+        type="button" class="btnCSS">Skill Master</button>
+
+
+    <img style="margin-left:20px;margin-top:-5px;cursor: pointer" routerLink="../UploadUsers" *ngIf="this.isAdminUser"
+        src="../../assets/img/AddNew.png" />
+    <button p-button routerLink="../UploadUsers" style="margin-top: 30px;margin-left:-8px" *ngIf="this.isAdminUser"
+        type="button" class="btnCSS">Upload Users</button>
+
+
+    <img style="margin-left:20px;margin-top:-5px;cursor: pointer" routerLink="../Users" *ngIf="this.isAdminUser"
+        src="../../assets/img/AddNew.png" />
+    <button p-button routerLink="../Users" style="margin-top: 30px;margin-left:-8px" *ngIf="this.isAdminUser"
+        type="button" class="btnCSS">List Users</button>
+
+</div>
+
+<div id="page-wrapper" style="margin: -5px 14px 10px 18px !important;">
+    <div class="row">
+        <div class="col-lg-12">&nbsp;</div>
+    </div>
+    <div class="row">
+        <div class="col-lg-12">
+            <!-- <p-menubar [model]="items"></p-menubar> -->
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-12">&nbsp;</div>
+    </div>
+    <div class="row">
+        <div class="col-lg-12">
+
+            <p-dataTable #dt *ngIf="myAssessement" [style]="{'width':'300px'}" [value]="myAssessement"
+                [paginator]="true" [scrollable]="true" sortMode="multiple" [rows]="20">
+                <p-column field="Category" header="Category" [sortable]="true" [filter]="true"
+                    filterMatchMode="contains" filterPlaceholder="Search" [headerStyle]="{'font-weight':'bold'}">
+                    <ng-template pTemplate="header" let-col let-data="rowData.Category">
+                        Category
+                        &nbsp;<img src="../../assets/img/sort-filled.png" width="15px" height="15px"   />
+                      </ng-template> 
+                </p-column>
+                <p-column field="Skill" header="Skill" [sortable]="true" [filter]="true" filterMatchMode="contains"
+                    [headerStyle]="{'font-weight':'bold'}" filterPlaceholder="Search">
+                    <ng-template pTemplate="header" let-col let-data="rowData.Skill">
+                        Skill
+                        &nbsp;<img src="../../assets/img/sort-filled.png" width="15px" height="15px"   />
+                      </ng-template> 
+                </p-column>
+
+
+                <p-column field="ProficiencyLevel" styleClass="valright" header="Proficiency Level" [filter]="true"
+                    [headerStyle]="{'font-weight':'bold'}" filterfield="ProficiencyLevel" filterMatchMode="contains"
+                    filterPlaceholder="Search">
+                    <ng-template pTemplate="filter" let-col let-data="rowData.ProficiencyLevel">
+                        <!-- <p-dropdown [options]="ProficiencyLevelArray" field="ProficiencyLevel"
+                                [style]="{'width':'100%','font-size':'15px'}" appendTo="body"
+                                (onChange)="dt.filter($event.value,col.field,col.filterMatchMode);"
+                                styleClass="ui-column-filter">
+                            </p-dropdown> -->
+                        <select id="DrpProficiencyLevel" field="ProficiencyLevel" class="selectBox"
+                            (change)="dt.filter($event.target.value,col.field,col.filterMatchMode);"
+                            style="width:380px;height:28px;color:black;font-weight:normal">
+                            <option *ngFor="let item1 of ProficiencyLevelArray" value={{item1.value}}>
+                                {{item1.label}}
+                            </option>
+                        </select>
+                    </ng-template>
+                </p-column>
+
+                <p-column [style]="{'width':'150px'}" id="UserAssessmentID" header="Edit"
+                    [headerStyle]="{'font-weight':'bold','width':'150px'}" field="UserAssessmentID">
+                    <ng-template let-row="rowData" pTemplate="body">
+
+                        <img src="../../assets/img/EditButton.png" class="classPointer" alt="TBM"
+                            (click)="EditAssessment(row.UserAssessmentID)" />
+
+
+                    </ng-template>
+                </p-column>
+
+                <p-column [style]="{'width':'150px'}" id="UserAssessmentID" header="Delete"
+                    [headerStyle]="{'font-weight':'bold','width':'150px'}" field="UserAssessmentID">
+                    <ng-template let-row="rowData" pTemplate="body">
+
+                        <img src="../../assets/img/DeleteButton.png" class="classPointer" alt="TBM"
+                            (click)="confirm(row.UserAssessmentID)" />
+                    </ng-template>
+                </p-column>
+            </p-dataTable>
+        </div>
+    </div>
+</div>
+
+
+
+<p-confirmDialog #cd header="Confirmation" icon="pi pi-exclamation-triangle">
+    <p-footer>
+        <button type="button" pButton icon="pi pi-check" label="Confirm" (click)="cd.accept()"
+            style="font-size:16px"></button>
+        <button type="button" pButton icon="pi pi-times" label="Cancel" (click)="cd.reject()"
+            style="font-size:16px"></button>
+    </p-footer>
+</p-confirmDialog>

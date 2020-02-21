@@ -1,0 +1,50 @@
+<div class="navbar-header">
+  <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+    <span class="sr-only">Toggle navigation</span>
+    <span class="icon-bar"></span>
+    <span class="icon-bar"></span>
+    <span class="icon-bar"></span>
+  </button>
+  <a style="cursor: pointer;" class="navbar-brand hidden-print" nowrap>
+    <img style="cursor: pointer;float:left;margin-top:10px" width="400" height="70"
+      src="../../assets/img/EurofinsLogo.jpg" routerLink="../SelfAssessment" alt="TBM" />
+    <img style="cursor: pointer;margin-top:3px" src="../../assets/img/ExpertDatabaseText.png" routerLink="../SelfAssessment"
+      width="400" height="100" alt="TBM" />
+  </a>
+<div>&nbsp;</div>
+  <div>&nbsp;</div>
+</div>
+<br />
+<br />
+
+<div style="margin-top:-40px">
+  <img style="cursor: pointer;margin-left:220px;margin-top:1px" src="../../assets/img/TimeIcon.png" alt="TBM" />
+  <label style="margin-top:10px" id="lblUserName" class="labelfont"
+    for="{{this.LastupdateTime}}">{{this.LastupdateTime}}</label>
+  <img style="cursor: pointer;margin-left:70px;margin-top:5px" src="../../assets/img/PersonImg.png" alt="TBM" />
+  <label style="margin-top:10px" id="lblUserName" class="labelfont" for="{{LoggedInUserName}}">{{LoggedInUserName}}</label>
+</div>
+<br />
+<br />
+<br />
+<br />
+
+<div style="margin-left:20px;" class="boxed">
+
+  <img routerLink="../SelfAssessment" style="margin-left:10px;margin-top:6px;cursor: pointer;"
+    src="../../assets/img/Pencil.png" alt="TBM" />
+  <button p-button type="button" routerLink="../SelfAssessment" class="btnCSS" style="margin-top:6px"
+    [ngClass]="{'temp':this.isInSelfAssessmentPage,'antiTemp':!this.isInSelfAssessmentPage}">Self Assessment</button>
+  <img routerLink="../ExpertSearch" style="margin-top:-15px;margin-left:5px;cursor: pointer;"
+    src="../../assets/img/Search.png" alt="TBM" />
+  <button p-button routerLink="../ExpertSearch" type="button" class="btnCSS"
+    [ngClass]="{'temp':!this.isInSelfAssessmentPage,'antiTemp':this.isInSelfAssessmentPage}">Expert Search</button>
+</div>
+<div style="display:none">
+  <div class="breadcrumb btnCSS" id="Divbreadcrumb" *ngFor="let bread of breadCrumbList"
+    style="padding:0px;cursor: pointer;margin-left: -5px" (click)="getBreadCrumb(bread)">
+    <pre class="breadcrumb btnCSS preclass" *ngIf="breadCrumbList[breadCrumbList.length-1]!=bread">{{bread}}  >></pre>
+    <pre class="breadcrumb btnCSS preclass"
+      *ngIf="breadCrumbList[breadCrumbList.length-1]==bread"><u>{{bread}}</u></pre>
+  </div>
+</div>

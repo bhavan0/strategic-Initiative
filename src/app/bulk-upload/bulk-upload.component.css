@@ -1,0 +1,91 @@
+.labelfont{
+    color:rgb(106, 90, 205);
+    font-size: 15px;
+}
+.boxed {
+    position: relative;
+    background: white;
+    border: 1px solid grey;
+    width: 1300px;
+    height: 45px;
+}
+.label {
+    background: inherit;
+    padding: 0 5px;
+    left: 5px;
+    top: -10px;
+}
+.btnCSS {
+    background-color: white;
+    color: black;
+    border: 2px solid white; 
+    color:grey;
+    font-size:20px;
+    cursor:pointer;
+    }
+    .fixed-header, .fixed-footer{
+
+        width: 100%;
+        position: fixed;        
+     
+        background: #fff;
+     
+        padding: 10px 0;
+     
+        color: #FF4500;
+     
+     }
+     
+     .fixed-header{
+     
+         top: 0;
+     
+     }
+     
+     .fixed-footer{
+     
+         bottom: 0;
+     
+     }
+     .container{
+        width: 80%;
+        margin: 0 auto; 
+        font-family: Arial;
+        font-size: 10px;
+    }
+    .breadcrumb{
+        font-size: 15px;
+        font-family: Arial;
+        font-style: normal;
+        color:#808080;
+        background-color: white;
+        margin-left:10px;
+    }
+
+    .container{
+        margin-top:20px;
+    }
+    .image-preview-input {
+        position: relative;
+        overflow: hidden;
+        margin: 0px;    
+        color: #333;
+        background-color: #fff;
+        border-color: #ccc;    
+    }
+    .image-preview-input input[type=file] {
+        position: absolute;
+        top: 0;
+        right: 0;
+        margin: 0;
+        padding: 0;
+        font-size: 20px;
+        cursor: pointer;
+        opacity: 0;
+        filter: alpha(opacity=0);
+    }
+    .image-preview-input-title {
+        margin-left:2px;
+    }
+
+    

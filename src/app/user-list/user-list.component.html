@@ -1,0 +1,95 @@
+<div [ngClass]="{'alignForUser':this.isAdminUser != 'true'}">
+  <img style="margin-left:15px;margin-top:-5px;cursor: pointer" routerLink="../AddNewSkill"
+    src="../../assets/img/AddNew.png" />
+  <button p-button routerLink="../AddNewSkill" style="margin-top: 30px;margin-left:-8px" type="button"
+    class="btnCSS">Add New Skill</button>
+
+
+  <img style="margin-left:20px;margin-top:-5px;cursor: pointer" routerLink="../CategoryMaster"
+    *ngIf="this.isAdminUser == 'true'" src="../../assets/img/AddNew.png" />
+  <button p-button routerLink="../CategoryMaster" style="margin-top: 30px;margin-left:-8px" type="button" class="btnCSS"
+    *ngIf="this.isAdminUser == 'true'">Category Master</button>
+
+
+  <img style="margin-left:20px;margin-top:-5px;cursor: pointer" routerLink="../SkillMaster"
+    *ngIf="this.isAdminUser == 'true'" src="../../assets/img/AddNew.png" />
+  <button p-button routerLink="../SkillMaster" style="margin-top: 30px;margin-left:-8px"
+    *ngIf="this.isAdminUser == 'true'" type="button" class="btnCSS">Skill Master</button>
+
+
+  <img style="margin-left:20px;margin-top:-5px;cursor: pointer" routerLink="../UploadUsers"
+    *ngIf="this.isAdminUser == 'true'" src="../../assets/img/AddNew.png" />
+  <button p-button routerLink="../UploadUsers" style="margin-top: 30px;margin-left:-8px"
+    *ngIf="this.isAdminUser == 'true'" type="button" class="btnCSS">Upload Users</button>
+
+
+  <img style="margin-left:20px;margin-top:-5px;cursor: pointer" routerLink="../Users"
+    src="../../assets/img/AddNew.png" />
+  <button p-button routerLink="../Users" style="margin-top: 30px;margin-left:-8px" *ngIf="this.isAdminUser == 'true'"
+    style="border-radius: 12px;background-color:#e6e6e6" type="button" class="btnCSS">List Users</button>
+
+</div>
+
+<br>
+<br>
+<div class="container-fluid" style="margin-bottom:10px">
+  <p-dataTable #dt [scrollable]="true" [value]="UsersList" [paginator]="true" [rows]="20" sortMode="multiple"
+    exportFilename="ExpertDBSearchResult" csvSeparator="," [style]="{'width':'1000px'}">
+
+    <p-column filterPlaceholder="Search" field="PUID" header="PUID" [sortable]="true" [filter]="true"
+      [headerStyle]="{'font-weight':'bold'}" filterMatchMode="contains">
+      <ng-template pTemplate="header" let-col let-data="rowData.PUID">
+        PUID
+        &nbsp;<img src="../../assets/img/sort-filled.png" width="15px" height="15px" />
+      </ng-template>
+    </p-column>
+
+    <p-column filterPlaceholder="Search" field="DisplayName" header="Display Name" [sortable]="true" [filter]="true"
+      [headerStyle]="{'font-weight':'bold'}" filterMatchMode="contains">
+      <ng-template pTemplate="header" let-col let-data="rowData.PUID">
+        Display Name
+        &nbsp;<img src="../../assets/img/sort-filled.png" width="15px" height="15px" />
+      </ng-template>
+    </p-column>
+
+    <p-column filterPlaceholder="Search" field="Country" header="Country" [sortable]="true" [filter]="true"
+      [headerStyle]="{'font-weight':'bold'}" filterMatchMode="contains">
+      <ng-template pTemplate="header" let-col let-data="rowData.PUID">
+        Country
+        &nbsp;<img src="../../assets/img/sort-filled.png" width="15px" height="15px" />
+      </ng-template>
+    </p-column>
+
+    <p-column filterPlaceholder="Search" field="Title" header="Title" [sortable]="true" [filter]="true"
+      [headerStyle]="{'font-weight':'bold'}" filterMatchMode="contains">
+      <ng-template pTemplate="header" let-col let-data="rowData.PUID">
+        Title
+        &nbsp;<img src="../../assets/img/sort-filled.png" width="15px" height="15px" />
+      </ng-template>
+    </p-column>
+
+    <p-column filterPlaceholder="Search" field="Email" header="Email" [sortable]="true" [filter]="true"
+      [headerStyle]="{'font-weight':'bold'}" filterMatchMode="contains">
+      <ng-template pTemplate="header" let-col let-data="rowData.PUID">
+        Email
+        &nbsp;<img src="../../assets/img/sort-filled.png" width="15px" height="15px" />
+      </ng-template>
+    </p-column>
+
+    <p-column [style]="{'width':'100px'}" header="Delete">
+      <ng-template let-row="rowData" pTemplate="body">
+        <img src="../../assets/img/DeleteButton.png" class="classPointer"
+          [style]="{'margin-left':'80px','cursor':'pointer'}" alt="TBM" (click)="confirm(row.PUID)" />
+      </ng-template>
+    </p-column>
+  </p-dataTable>
+</div>
+
+<p-confirmDialog #cd header="Confirmation" icon="pi pi-exclamation-triangle">
+  <p-footer>
+    <button type="button" pButton icon="pi pi-check" label="Confirm" (click)="cd.accept()"
+      style="font-size:16px"></button>
+    <button type="button" pButton icon="pi pi-times" label="Cancel" (click)="cd.reject()"
+      style="font-size:16px"></button>
+  </p-footer>
+</p-confirmDialog>

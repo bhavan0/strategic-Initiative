@@ -1,0 +1,52 @@
+  .labelExpertfont{
+    color:grey;
+    font-size: 15px;
+}
+   .labelfont{
+    color:rgb(106, 90, 205);
+    font-size: 15px;
+}
+.boxed {
+    position: relative;
+    background: white;
+    border: 1px solid grey;
+    width: 1300px;
+    height: 45px;
+}
+.label {
+    background: inherit;
+    padding: 0 5px;
+    left: 5px;
+    top: -10px;
+}
+.btnCSS {
+    background-color: white;
+    color: black;
+    border: 2px solid white; 
+    color:grey;
+    font-size:20px;
+    cursor:pointer;
+}
+.fixed-header, .fixed-footer{
+    width: 100%;
+    position: fixed;        
+    background: #fff;
+    padding: 10px 0;
+    color: #FF4500;
+}
+.fixed-header{
+    top: 0;     
+}
+.fixed-footer{
+    bottom: 0;
+}
+.container{
+    width: 80%;
+    margin: 0 auto; 
+    font-family: Arial;
+    font-size: 10px;
+}
+img:hover {
+    cursor: pointer;
+}
+    

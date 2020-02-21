@@ -1,0 +1,23 @@
+.fixed-footer{
+
+    width: 100%;
+    position: relative;        
+ 
+    background: #fff;
+ 
+    padding: 10px 0;
+ 
+    color: #FF4500;
+ 
+ }
+ .fixed-footer{
+
+    bottom: 0;
+
+}
+.container {
+    width: 80%;
+    margin: 0 auto; /* Center the DIV horizontally */
+    font-family: Arial;
+    font-size: 10px;
+  }

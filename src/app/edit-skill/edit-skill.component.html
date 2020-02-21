@@ -1,0 +1,95 @@
+<div [ngClass]="{'alignForUser':this.isAdminUser != 'true'}">
+  <img style="margin-left:15px;margin-top:-5px;cursor: pointer" routerLink="../AddNewSkill"
+    src="../../assets/img/AddNew.png" />
+  <button p-button routerLink="../../AddNewSkill" style="margin-top: 30px;margin-left:-8px" type="button"
+    class="btnCSS">Add New Skill</button>
+
+
+  <img style="margin-left:20px;margin-top:-5px;cursor: pointer" routerLink="../../CategoryMaster"
+    *ngIf="this.isAdminUser == 'true'" src="../../assets/img/AddNew.png" />
+  <button p-button routerLink="../../CategoryMaster" style="margin-top: 30px;margin-left:-8px" type="button"
+    *ngIf="this.isAdminUser == 'true'" class="btnCSS">
+    Category Master</button>
+
+  <!--ngIf="this.isAdminUser == 'true'"-->
+  <img style="margin-left:20px;margin-top:-5px;cursor: pointer" routerLink="../../SkillMaster"
+    *ngIf="this.isAdminUser == 'true'" src="../../assets/img/AddNew.png" />
+
+  <button p-button routerLink="../../SkillMaster" style="margin-top: 30px;margin-left:-8px" type="button"
+    *ngIf="this.isAdminUser == 'true'" class="btnCSS">Skill Master</button>
+
+  <img style="margin-left:20px;margin-top:-5px;cursor: pointer" routerLink="../../UploadUsers"
+    *ngIf="this.isAdminUser == 'true'" src="../../assets/img/AddNew.png" />
+  <button p-button routerLink="../../UploadUsers" style="margin-top: 30px;margin-left:-8px"
+    *ngIf="this.isAdminUser == 'true'" type="button" class="btnCSS">Upload Users</button>
+
+
+  <img style="margin-left:20px;margin-top:-5px;cursor: pointer" routerLink="../../Users"
+    *ngIf="this.isAdminUser == 'true'" src="../../assets/img/AddNew.png" />
+  <button p-button routerLink="../../Users" style="margin-top: 30px;margin-left:-8px" *ngIf="this.isAdminUser == 'true'"
+    type="button" class="btnCSS">List Users</button>
+</div>
+<br />
+<br />
+<br />
+<br />
+<br />
+<div style="margin-bottom:230px">
+  <!-- <div class="col-lg-6">
+        <h3> Edit Assessment </h3>
+    </div>    -->
+  <div style="margin-left:20px" class="DivCategoryError">
+    <font size="3">Category </font>
+    <select id="DrpCategory" style="margin-left:63px;width:300px;height:28px;background-color: #dbdbdb;font-size: 13px"
+      class="selectBox" disabled=true>
+      <option value="0">{{Category}}</option>
+    </select>
+    <!-- <p-dropdown [options]="CategoryArray" disabled=true
+      [style]="{'margin-left':'65px','width':'410px','height':'33px'}" [(ngModel)]="selectedCategory">
+      <ng-template let-item pTemplate="selectedItem">
+        {{selectedCategory}}
+      </ng-template>
+      <ng-template let-category pTemplate="CategoryArray">
+        {{category.label}}
+      </ng-template>
+    </p-dropdown> -->
+  </div>
+  <br />
+  <div style="margin-left:20px" class="DivSkillError">
+    <font size="3">Skill </font>
+    <select id="DrpSkill" (change)="SetSkillValue($event.target.value)" class="selectBox"
+      style="margin-left:99px;width:300px;height:28px;background-color: #dbdbdb;font-size: 13px"
+      [disabled]="!filterSkills">
+      <option value="0">{{Skill}}</option>
+    </select>
+    <!-- <p-dropdown [options]="filterSkills" disabled=true
+      [style]="{'margin-left':'100px','width':'410px','height':'33px'}" [(ngModel)]="this.Skill">
+      <ng-template let-item pTemplate="selectedItem">
+        {{this.Skill}}
+      </ng-template>
+      <ng-template let-category pTemplate="CategoryArray">
+        {{filterSkills.label}}
+      </ng-template>
+    </p-dropdown> -->
+  </div>
+  <br />
+  <div style="margin-left:20px" class="DivProfLevelError">
+    <font size="3">Proficiency Level </font>
+    <select id="DrpProficiencyLevel" class="selectBox" (change)="SetProfLevelValue($event.target.value)"
+      style="margin-left:10px;width:300px;height:28px;font-size: 13px">
+      <option id="option-{{i}}" *ngFor="let item1 of ProficiencyLevelArray; let i = index;" value={{item1.value}}>
+        {{item1.label}}
+      </option>
+    </select>
+  </div>
+  <br />
+  <br />
+  <p-button style="margin-left:170px" label="Submit" (onClick)="EditAssesssment()"></p-button>
+  <p-button label="Cancel" routerLink="../../SelfAssessment" styleClass="LoginButton1" style="margin-left:20px;">
+  </p-button>
+</div>
+<p-confirmDialog #cd header="Confirmation" icon="pi pi-exclamation-triangle">
+  <p-footer>
+    <button type="button" pButton icon="pi pi-check" label="Ok" (click)="cd.accept()"></button>
+  </p-footer>
+</p-confirmDialog>

@@ -1,0 +1,98 @@
+<br />
+<br />
+<br />
+
+<div id="wrapper">
+
+  <input [(ngModel)]="SearchText" placeholder="Search" type="text" id="txtSearch" (keydown)="onKeydown($event)"
+    style="margin-left:20px;width:300px;font-size: 14px" (blur)="onBlurSearch($event.target.value)"
+    pInputText />
+  <p-button id="mySearchButton" label="Search" style="margin-left:6px" (click)="PopulateSearchText()"></p-button>
+
+  <label id="lblUserName" class="labelExpertfont" style="margin-left:25px;font-size: 18px" for="{{LoggedInUserName}}">Export</label>
+
+  <img style="margin-left:10px;" src="../../assets/img/Excel.png" alt="TBM" (click)="DownLoadExcel()" />
+  <img style="margin-left:10px;" src="../../assets/img/CSV.png" alt="TBM" (click)="dt.exportCSV()" />
+  <img style="margin-left:10px;" src="../../assets/img/PDF.png" alt="TBM" (click)="DownloadPDF()" />
+</div>
+<br />
+<div id="wrapper">
+  <div style="width:1000px">
+
+    <div id="page-wrapper" style="margin: 2px 18px 18px 18px !important;">
+      <div>
+        <div style="width:1487px">
+          <p-dataTable #dt [scrollable]="true" [value]="SearchResult" [paginator]="true" [rows]="20"
+            sortMode="multiple" exportFilename="ExpertDBSearchResult" csvSeparator="," [style]="{'width':'100%'}">
+
+            <p-column filterPlaceholder="Search" field="PUID" header="PUID" [sortable]="true"
+              [headerStyle]="{'font-weight':'bold'}" [filter]="true" filterMatchMode="contains">
+              <ng-template pTemplate="header" let-col let-data="rowData.PUID">
+                PUID
+                &nbsp;<img src="../../assets/img/sort-filled.png" width="15px" height="15px"   />
+              </ng-template> 
+            </p-column>
+            <p-column filterPlaceholder="Search" field="DisplayName" header="Display Name" [sortable]="true"
+              [headerStyle]="{'font-weight':'bold'}" [filter]="true" filterMatchMode="contains">
+              <ng-template pTemplate="header" let-col let-data="rowData.DisplayName">
+                Display Name
+                &nbsp;<img src="../../assets/img/sort-filled.png" width="15px" height="15px"   />
+              </ng-template> 
+            </p-column>
+            <p-column filterPlaceholder="Search" field="Country" header="Country" [sortable]="true" [filter]="true"
+              [headerStyle]="{'font-weight':'bold'}" filterMatchMode="contains">
+              <ng-template pTemplate="header" let-col let-data="rowData.Country">
+                Country
+                &nbsp;<img src="../../assets/img/sort-filled.png" width="15px" height="15px"   />
+              </ng-template> 
+            </p-column>
+            <p-column filterPlaceholder="Search" field="Title" header="Title" [sortable]="true" [filter]="true"
+              [headerStyle]="{'font-weight':'bold'}" filterMatchMode="contains">
+              <ng-template pTemplate="header" let-col let-data="rowData.Title">
+                Title
+                &nbsp;<img src="../../assets/img/sort-filled.png" width="15px" height="15px"   />
+              </ng-template>
+            </p-column>
+            <p-column filterPlaceholder="Search" field="Category" header="Category" [sortable]="true" [filter]="true"
+              [headerStyle]="{'font-weight':'bold'}" filterMatchMode="contains">
+              <ng-template pTemplate="header" let-col let-data="rowData.Category">
+                Category
+                &nbsp;<img src="../../assets/img/sort-filled.png" width="15px" height="15px"   />
+              </ng-template>
+            </p-column>
+            <p-column filterPlaceholder="Search" field="Skill" header="Skill" [sortable]="true" [filter]="true"
+              [headerStyle]="{'font-weight':'bold'}" filterMatchMode="contains">
+              <ng-template pTemplate="header" let-col let-data="rowData.Skill">
+                Skill
+                &nbsp;<img src="../../assets/img/sort-filled.png" width="15px" height="15px"   />
+              </ng-template>
+            </p-column>
+
+
+
+            <p-column [headerStyle]="{'font-weight':'bold'}" field="ProficiencyLevel" styleClass="valright"
+              header="Proficiency Level" [filter]="true" filterfield="ProficiencyLevel" filterMatchMode="contains"
+              filterPlaceholder="Search">
+
+              <ng-template pTemplate="filter" let-col let-data="rowData.ProficiencyLevel">
+                
+                <!-- <p-dropdown [options]="ProficiencyLevelArray" [style]="{'width':'100%','font-size':'15px'}"
+                  (onChange)="dt.filter($event.value,col.field,col.filterMatchMode);" styleClass="ui-column-filter"
+                  appendTo="body" field="ProficiencyLevel"></p-dropdown> -->
+
+                  <select  id="DrpProficiencyLevel" field="ProficiencyLevel" class="selectBox" 
+                            (change)="dt.filter($event.target.value,col.field,col.filterMatchMode);" 
+                            style="width:195px;height:28px;color:black;font-weight:normal">
+                                    <option *ngFor="let item1 of ProficiencyLevelArray" value={{item1.value}}>
+                                            {{item1.label}}
+                                    </option>
+                </select>  
+
+              </ng-template>
+            </p-column>
+          </p-dataTable>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,114 @@
+<div [ngClass]="{'alignForUser':this.isAdminUser != 'true'}">
+    <img style="margin-left:15px;margin-top:-5px;cursor: pointer" routerLink="../AddNewSkill"
+        src="../../assets/img/AddNew.png" />
+    <button p-button routerLink="../AddNewSkill" style="margin-top: 30px;margin-left:-8px" type="button"
+        style="border-radius: 12px;background-color:#e6e6e6" class="btnCSS">Add New Skill</button>
+
+    <img style="margin-left:20px;margin-top:-5px;cursor: pointer" routerLink="../CategoryMaster"
+        *ngIf="this.isAdminUser == 'true'" src="../../assets/img/AddNew.png" />
+    <button p-button routerLink="../CategoryMaster" style="margin-top: 30px;margin-left:-8px" type="button"
+        *ngIf="this.isAdminUser == 'true'" class="btnCSS">
+        Category Master</button>
+
+    <img style="margin-left:20px;margin-top:-5px;cursor: pointer" routerLink="../SkillMaster"
+        *ngIf="this.isAdminUser == 'true'" src="../../assets/img/AddNew.png" />
+    <button p-button routerLink="../SkillMaster" style="margin-top: 30px;margin-left:-8px" type="button"
+        *ngIf="this.isAdminUser == 'true'" class="btnCSS">Skill Master</button>
+
+    <img style="margin-left:20px;margin-top:-5px;cursor: pointer" routerLink="../UploadUsers"
+        *ngIf="this.isAdminUser == 'true'" src="../../assets/img/AddNew.png" />
+    <button p-button routerLink="../UploadUsers" style="margin-top: 30px;margin-left:-8px"
+        *ngIf="this.isAdminUser == 'true'" type="button" class="btnCSS">Upload Users</button>
+
+
+    <img style="margin-left:20px;margin-top:-5px;cursor: pointer" routerLink="../Users"
+        *ngIf="this.isAdminUser == 'true'" src="../../assets/img/AddNew.png" />
+    <button p-button routerLink="../Users" style="margin-top: 30px;margin-left:-8px" *ngIf="this.isAdminUser == 'true'"
+        type="button" class="btnCSS">List Users</button>
+</div>
+
+<div id="wrapper" style="margin-bottom:150px">
+    <div id="page-wrapper" style="margin: 18px 18px 18px 18px !important;">
+        <div class="row">
+            <div class="col-lg-12">&nbsp;</div>
+        </div>
+        <div class="row">
+            <div class="col-lg-12">
+
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-12">&nbsp;</div>
+        </div>
+        <div class="row">
+            <div class="col-lg-6">
+                <h3> Add New Skill </h3>
+                <br />
+                <br />
+                <br />
+                <div>
+                    <font size="3">Category </font>
+                    <select (change)="filterSelectedSkills($event.target.value)" id="DrpCategory"
+                        style="margin-left:80px;width:300px;height:28px;font-size:13px" class="selectBox">
+                        <!-- <option value="0">-- Select Category --</option> -->
+                        <option *ngFor="let item of CategoryArray" value={{item.value}}>
+                            {{item.label}}
+                        </option>
+                    </select>
+                </div>
+                <br />
+                <div>
+                    <font size="3">Skill </font>
+                    <!-- <p-dropdown id="DrpSkill" styleClass="DivSkill" [disabled]="!filterSkills"
+                        (onChange)="SetSkillValue($event.value)" [options]="filterSkills"
+                        [style]="{'margin-left':'102px','width':'410px','height':'35px'}"></p-dropdown> -->
+                    <select id="DrpSkill" (change)="SetSkillValue($event.target.value)"
+                        style="margin-left:114px;width:300px;height:28px;font-size:13px" class="selectBox"
+                        [disabled]="!filterSkills">
+                        <!-- <option value="0">-- Select Skill --</option> -->
+                        <option *ngFor="let item2 of filterSkills" value={{item2.value}}>
+                            {{item2.label}}
+                        </option>
+                    </select>
+                </div>
+                <br />
+                <div class="DivProfLevelError" style="float: Left">
+                    <font size="3">Proficiency Level </font>
+                </div>
+                <div style="float:Left;margin-Left:20px;font-size:13px">
+                    <!-- <p-dropdown id="DrpProficiencyLevel" (onChange)="SetProfLevelValue($event.value)"
+                        [options]="ProficiencyLevelArray" [style]="{'width':'410px','height':'35px'}">
+                    </p-dropdown> -->
+                    <select id="DrpProficiencyLevel" (change)="SetProfLevelValue($event.target.value)" class="selectBox"
+                        style="margin-left:10px;width:300px;height:28px">
+                        <!-- <option value="0">-- Select ProficiencyLevel --</option> -->
+                        <option *ngFor="let item1 of ProficiencyLevelArray" value={{item1.value}}>
+                            {{item1.label}}
+                        </option>
+                    </select>
+                </div>
+                <br />
+                <br />
+                <br />
+                <br />
+                <p-button style="margin-left: 205px" label="Submit" (onClick)="AddAssessment()"></p-button>
+                <p-button label="Cancel" ptooltip="Cancel" routerLink="../SelfAssessment" styleClass="LoginButton1"
+                    style="margin-left:20px;"></p-button>
+
+                <br />
+                <br />
+                <Div style="margin-left:187px">
+                    <p-button label="Cannot find your skill" (onClick)="OpenOutLook()" ptooltip="Cannot find your skill"
+                        styleClass="LoginButton1" style="margin-left:20px;"></p-button>
+                </Div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<p-confirmDialog #cd header="Confirmation" icon="pi pi-exclamation-triangle">
+    <p-footer>
+        <button type="button" pButton icon="pi pi-check" label="Ok" (click)="cd.accept()"></button>
+    </p-footer>
+</p-confirmDialog>

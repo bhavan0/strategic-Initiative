@@ -1,0 +1,72 @@
+<div [ngClass]="{'alignForUser':this.isAdminUser != 'true'}">
+    <img style="margin-left:15px;margin-top:-5px;cursor: pointer" routerLink="../AddNewSkill"
+        src="../../assets/img/AddNew.png" />
+    <button p-button routerLink="../../AddNewSkill" style="margin-top: 30px;margin-left:-8px" type="button"
+        class="btnCSS">Add New Skill</button>
+
+
+    <img style="margin-left:20px;margin-top:-5px;cursor: pointer" routerLink="../../CategoryMaster"
+        *ngIf="this.isAdminUser == 'true'" src="../../assets/img/AddNew.png" />
+    <button p-button routerLink="../../CategoryMaster" style="margin-top: 30px;margin-left:-8px" type="button"
+        *ngIf="this.isAdminUser == 'true'" style="border-radius: 12px;background-color:#e6e6e6" class="btnCSS">
+        Category Master</button>
+
+    <img style="margin-left:20px;margin-top:-5px;cursor: pointer" routerLink="../../SkillMaster"
+        *ngIf="this.isAdminUser == 'true'" src="../../assets/img/AddNew.png" />
+    <button p-button routerLink="../../SkillMaster" style="margin-top: 30px;margin-left:-8px" type="button"
+        *ngIf="this.isAdminUser == 'true'" class="btnCSS">Skill Master</button>
+
+    <img style="margin-left:20px;margin-top:-5px;cursor: pointer" routerLink="../../UploadUsers"
+        *ngIf="this.isAdminUser == 'true'" src="../../assets/img/AddNew.png" />
+    <button p-button routerLink="../../UploadUsers" style="margin-top: 30px;margin-left:-8px"
+        *ngIf="this.isAdminUser == 'true'" type="button" class="btnCSS">Upload Users</button>
+
+
+    <img style="margin-left:20px;margin-top:-5px;cursor: pointer" routerLink="../../Users"
+        *ngIf="this.isAdminUser == 'true'" src="../../assets/img/AddNew.png" />
+    <button p-button routerLink="../../Users" style="margin-top: 30px;margin-left:-8px"
+        *ngIf="this.isAdminUser == 'true'" type="button" class="btnCSS">List Users</button>
+</div>
+
+
+
+<div id="wrapper" style="margin-bottom:300px">
+    <div id="page-wrapper" style="margin: 18px 18px 18px 18px !important;">
+        <div class="row">
+            <div class="col-lg-12">&nbsp;</div>
+        </div>
+        <div class="row">
+            <div class="col-lg-12">
+                <!-- <p-menubar [model]="items"></p-menubar> -->
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-12">&nbsp;</div>
+        </div>
+        <div class="row">
+            <div class="col-lg-6">
+                <h3> Edit Category </h3>
+                <br />
+                <br />
+                <div class="DivCategoryError">
+                    <font size="3">Category </font>
+                    &nbsp;&nbsp;
+                    <input type="text" id="txtCategory" size="40px" style="font-size:13px" value={{CategoryName}}
+                        (blur)="onBlurCategory($event.target.value)" pInputText />
+
+                </div>
+                <br />
+                <p-button label="Submit" style="margin-left:110px" (onClick)="EditCategory()"></p-button>
+                <p-button label="Cancel" ptooltip="Cancel" routerLink="../../CategoryMaster" styleClass="LoginButton1"
+                    style="margin-left:20px;"></p-button>
+
+
+            </div>
+        </div>
+    </div>
+</div>
+<p-confirmDialog #cd header="Confirmation" icon="pi pi-exclamation-triangle">
+    <p-footer>
+        <button type="button" pButton icon="pi pi-check" label="OK" (click)="cd.accept()"></button>
+    </p-footer>
+</p-confirmDialog>

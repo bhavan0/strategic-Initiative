@@ -1,0 +1,95 @@
+<div [ngClass]="{'alignForUser':this.isAdminUser != 'true'}">
+    <img style="margin-left:15px;margin-top:-5px;cursor: pointer" routerLink="../AddNewSkill"
+        src="../../assets/img/AddNew.png" />
+    <button p-button routerLink="../AddNewSkill" style="margin-top: 30px;margin-left:-8px" type="button"
+        class="btnCSS">Add New Skill</button>
+
+
+    <img style="margin-left:20px;margin-top:-5px;cursor: pointer" routerLink="../CategoryMaster"
+        *ngIf="this.isAdminUser == 'true'" src="../../assets/img/AddNew.png" />
+    <button p-button routerLink="../CategoryMaster" style="margin-top: 30px;margin-left:-8px" type="button"
+        *ngIf="this.isAdminUser == 'true'" class="btnCSS">
+        Category Master</button>
+
+
+    <img style="margin-left:20px;margin-top:-5px;cursor: pointer" routerLink="../SkillMaster"
+        *ngIf="this.isAdminUser == 'true'" src="../../assets/img/AddNew.png" />
+    <button p-button routerLink="../SkillMaster" style="margin-top: 30px;margin-left:-8px" type="button"
+        *ngIf="this.isAdminUser == 'true'" style="border-radius: 12px;background-color:#e6e6e6" class="btnCSS">Skill
+        Master</button>
+
+    <img style="margin-left:20px;margin-top:-5px;cursor: pointer" routerLink="../UploadUsers"
+        *ngIf="this.isAdminUser == 'true'" src="../../assets/img/AddNew.png" />
+    <button p-button routerLink="../UploadUsers" style="margin-top: 30px;margin-left:-8px"
+        *ngIf="this.isAdminUser == 'true'" type="button" class="btnCSS">Upload Users</button>
+
+
+    <img style="margin-left:20px;margin-top:-5px;cursor: pointer" routerLink="../Users"
+        *ngIf="this.isAdminUser == 'true'" src="../../assets/img/AddNew.png" />
+    <button p-button routerLink="../Users" style="margin-top: 30px;margin-left:-8px" *ngIf="this.isAdminUser == 'true'"
+        type="button" class="btnCSS">List Users</button>
+</div>
+
+
+<img src="../../assets/img/AddNew.png" style="margin-left:408px;" routerLink="../AddNewSkillMaster" alt="TBM" />
+<button p-button routerLink="../AddNewSkillMaster" type="button" class="btnCSS">
+    Add New Skill</button>
+
+
+<div id="page-wrapper" style="margin: 2px 14px 830px 18px !important;">
+    <div class="row">
+        <div class="col-lg-12">
+            <h3> Skill List </h3>
+            <p-dataTable [value]="SkillArray" var="item" [paginator]="true" sortMode="multiple" [rows]="20"
+                sortMode="multiple" [scrollable]="true" [style]="{'height':'70px'}">
+                 
+                <p-column field="CategoryName" [style]="{'width':'200px'}" header="Category Name" [sortable]="true"
+                [headerStyle]="{'font-weight':'bold','width':'200px'}"
+                    [filter]="true" filterMatchMode="contains" filterPlaceholder="Search">
+                    <ng-template pTemplate="header" let-col let-data="rowData.CategoryName">
+                        Category
+                        &nbsp;<img src="../../assets/img/sort-filled.png" width="15px" height="15px"   />
+                      </ng-template> 
+                </p-column>
+                <p-column field="SkillName" [style]="{'width':'200px'}" header="Skill Name" [sortable]="true"
+                [headerStyle]="{'font-weight':'bold','width':'200px'}"
+                    [filter]="true" filterMatchMode="contains" filterPlaceholder="Search">
+                    <ng-template pTemplate="header" let-col let-data="rowData.SkillName">
+                        Skill Name
+                        &nbsp;<img src="../../assets/img/sort-filled.png" width="15px" height="15px"   />
+                      </ng-template> 
+                </p-column>
+                <p-column [style]="{'width':'100px'}" id="CategoryID" header="Edit" 
+                [headerStyle]="{'font-weight':'bold','width':'100px'}"
+                field="SkillID">
+                    <ng-template let-row="rowData" pTemplate="body">
+                        <div style="margin-left:60px">
+                            <img src="../../assets/img/EditButton.png" class="classPointer"
+                                [style]="{'margin-left':'80px','cursor':'pointer'}" alt="TBM"
+                                (click)="EditSkill(row.SkillID)" />
+                        </div>
+                    </ng-template>
+                </p-column>
+                <p-column [style]="{'width':'100px'}" id="CategoryID" header="Delete" 
+                [headerStyle]="{'font-weight':'bold','width':'100px'}"
+                field="SkillID">
+                    <ng-template let-row="rowData" pTemplate="body">
+                        <div style="margin-left:60px">
+                            <img src="../../assets/img/DeleteButton.png" class="classPointer"
+                                [style]="{'margin-left':'80px','cursor':'pointer'}" alt="TBM"
+                                (click)="ValidateDeleteSkill(row.SkillID)" />
+                        </div>
+                    </ng-template>
+                </p-column>
+            </p-dataTable>
+        </div>
+    </div>
+</div>
+
+
+<p-confirmDialog #cd header="Confirmation" icon="pi pi-exclamation-triangle">
+    <p-footer>
+        <button type="button" pButton icon="pi pi-check" label="Confirm" (click)="cd.accept()" style="font-size:16px"></button>
+        <button type="button" pButton icon="pi pi-times" label="Cancel" (click)="cd.reject()" style="font-size:16px"></button>
+    </p-footer>
+</p-confirmDialog>
